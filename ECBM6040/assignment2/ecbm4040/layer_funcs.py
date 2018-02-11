@@ -144,13 +144,8 @@ def conv2d_forward(x, w, b, pad, stride):
     For reference, visit this website:
     https://adeshpande3.github.io/A-Beginner%27s-Guide-To-Understanding-Convolutional-Neural-Networks-Part-2/
     """
-    #######################################################################
-    #                                                                     #
-    #                                                                     #
-    #                         TODO: YOUR CODE HERE                        #
-    #                                                                     #
-    #                                                                     #
-    #######################################################################
+    x_pad = np.pad(x, (pad,), mode='constant', constant_values=(0,))
+    print x_pad
     raise NotImplementedError
 
 
@@ -185,4 +180,3 @@ def conv2d_backward(d_top, x, w, b, pad, stride):
     #                                                                     #
     #######################################################################
     raise NotImplementedError
-
