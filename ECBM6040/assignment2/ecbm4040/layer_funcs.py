@@ -147,8 +147,8 @@ def conv2d_forward(x, w, b, pad, stride):
     x_pad = np.pad(x, (pad,), mode='constant', constant_values=(0,))
 
     # extract dimensions
-    input_dim = x.shape
-    filter_dim = w.shape
+    idim = x.shape
+    fdim = w.shape
     print (input_dim)
     print (filter_dim)
 
