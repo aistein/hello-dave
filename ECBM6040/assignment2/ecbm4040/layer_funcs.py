@@ -4,7 +4,6 @@
 
 import numpy as np
 
-
 def affine_forward(x, w, b):
     """
     Computes the forward pass for an affine (fully-connected) layer.
@@ -144,8 +143,19 @@ def conv2d_forward(x, w, b, pad, stride):
     For reference, visit this website:
     https://adeshpande3.github.io/A-Beginner%27s-Guide-To-Understanding-Convolutional-Neural-Networks-Part-2/
     """
+    # Numpy provides a nice padding function
     x_pad = np.pad(x, (pad,), mode='constant', constant_values=(0,))
-    print x_pad
+
+    # extract dimensions
+    input_dim = x.shape
+    filter_dim = w.shape
+    print (input_dim)
+    print (filter_dim)
+
+    # Do the convolution
+    new_height = ((height - filter_height + 2 * pad) // stride) + 1
+    new_width = ((width - filter_width + 2 * pad) // stride) + 1
+
     raise NotImplementedError
 
 
