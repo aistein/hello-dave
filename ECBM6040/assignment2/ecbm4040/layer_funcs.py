@@ -160,8 +160,8 @@ def conv2d_forward(x, w, b, pad, stride):
     fc = fdim[3]
 
     # Do the convolution
-    new_height = ((height - filter_height + 2 * pad) // stride) + 1
-    new_width = ((width - filter_width + 2 * pad) // stride) + 1
+    new_height = ((ih - fh + 2 * pad) // stride) + 1
+    new_width = ((iw - fw + 2 * pad) // stride) + 1
     odim = (idim[0], new_height, new_width, fdim[0])
     o = np.zeros(odim)
 
