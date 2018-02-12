@@ -148,15 +148,37 @@ def conv2d_forward(x, w, b, pad, stride):
 
     # extract dimensions
     idim = x.shape
+    ib = idim[0]
+    ih = idim[1]
+    iw = idim[2]
+    ic = idim[3]
+
     fdim = w.shape
-    print (input_dim)
-    print (filter_dim)
+    fn = fdim[0]
+    fh = fdim[1]
+    fw = fdim[2]
+    fc = fdim[3]
 
     # Do the convolution
     new_height = ((height - filter_height + 2 * pad) // stride) + 1
     new_width = ((width - filter_width + 2 * pad) // stride) + 1
+    odim = (idim[0], new_height, new_width, fdim[0])
+    o = np.zeros(odim)
 
-    raise NotImplementedError
+    for o_filter in range (0, fn):
+        for o_batch in range (0, ib):
+            for o_row in range (0, new_height):
+                for o_col in range (0, new_width):
+                    for i_channel in range (0, ic):
+                        for f_row in range (0, fh):
+                            for f_col in range (0, fc):
+                                o[o_batch, o_row, o_col, o_filter] = \
+                                w[o_filter, f_row, f_col, i_channel] * \
+                                x[o_batch, (ih - f_row + o_row - pad - 1)*stride, \
+                                           (iw - f_col + o_col - pad - 1)*stride, \
+                                           i_channel]
+    print (o)
+    return o
 
 
 def conv2d_backward(d_top, x, w, b, pad, stride):
